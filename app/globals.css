@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #050414;
+  color: #e9e6f7;
+}
+
+/* Big glowing planet, positioned to bleed off the hero */
+.planet {
+  position: absolute;
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 32% 28%, #c9b6ff 0%, #8b5cf6 22%, #4c1d95 52%, #150a30 78%, #050414 100%);
+  box-shadow:
+    0 0 140px 20px rgba(124, 58, 237, 0.35),
+    inset -40px -40px 120px rgba(0, 0, 0, 0.55);
+}
+
+.planet::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: repeating-radial-gradient(
+    circle at 40% 35%,
+    rgba(255, 255, 255, 0.05) 0px,
+    rgba(255, 255, 255, 0.05) 2px,
+    transparent 2px,
+    transparent 40px
+  );
+  mix-blend-mode: overlay;
+}
+
+.starfield {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1.5px 1.5px at 70% 60%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 85% 15%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 55% 45%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1.5px 1.5px at 10% 65%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 92% 80%, rgba(255,255,255,0.6), transparent);
+  background-repeat: repeat;
+  background-size: 600px 600px;
+  opacity: 0.7;
+}
+
+.glass {
+  background: rgba(20, 15, 45, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(167, 139, 250, 0.18);
+}
+
+.orbit {
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px dashed rgba(167, 139, 250, 0.22);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #a78bfa 0%, #38bdf8 60%, #f4c95d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.field-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.5rem;
+  padding: 0.7rem 0.9rem;
+  color: #fff;
+  font-family: var(--font-body);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field-input::placeholder {
+  color: rgba(233, 230, 247, 0.35);
+}
+
+.field-input:focus {
+  outline: none;
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+}
+
+::selection {
+  background: rgba(124, 58, 237, 0.4);
+  color: #fff;
+}
+
+/* focus visibility kept intentionally strong against the dark theme */
+:focus-visible {
+  outline: 2px solid #a78bfa;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-drift,
+  .animate-spin-slow,
+  .animate-spin-slower {
+    animation: none !important;
+  }
+}

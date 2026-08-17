@@ -1,0 +1,54 @@
+// Prisma schema — PostgreSQL
+// Run `npx prisma db push` after setting DATABASE_URL to create these tables.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // Vercel Postgres / Neon give you a separate direct (non-pooled) connection
+  // string for migrations. If yours doesn't, just remove this line.
+  directUrl = env("DIRECT_URL")
+}
+
+enum OrderStatus {
+  NEW
+  IN_REVIEW
+  IN_PROGRESS
+  DELIVERED
+  CANCELLED
+}
+
+enum Sector {
+  LANDING_PAGE
+  FULL_WEBSITE
+  WEB_APP
+  ECOMMERCE
+  REDESIGN
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  // Step 1: Mission Brief
+  projectName   String
+  email         String
+  objective     String
+
+  // Step 2: Sector
+  sector        Sector
+  budgetUsd     Int
+
+  // Step 3: Command Center
+  timelineDays  Int
+  references    String?
+
+  status        OrderStatus @default(NEW)
+
+  @@index([email])
+  @@index([status])
+}
