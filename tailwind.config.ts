@@ -27,10 +27,10 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-14px)" },
         },
-        spin-slow: {
-          from: { transform: "rotate(0deg)" },
-          to: { transform: "rotate(360deg)" },
-        },
+        "spin-slow": {
+  from: { transform: "rotate(0deg)" },
+  to: { transform: "rotate(360deg)" },
+},
       },
       animation: {
         drift: "drift 8s ease-in-out infinite",
